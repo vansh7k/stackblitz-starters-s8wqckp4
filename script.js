@@ -14,10 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
       name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
   }
 
-  // 1. Get the value of the 'count' cookie
-  // 2. If the cookie exists, increment the value and update the cookie
-  // 3. If the cookie does not exist, create it and set the value to 1
-  // 4. Display the count on the webpage
+  // Initialize the count cookie
+  let count = getCookie('count');
+  if (count === null) {
+    count = 1; // Set initial value
+  } else {
+    count = parseInt(count) + 1; // Increment the count
+  }
+  setCookie('count', count, 7); // Update the cookie with new count
 
-  // your code here
+  // Display the count on the webpage
+  document.getElementById('countDisplay').innerText = count;
 });
